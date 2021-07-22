@@ -1,10 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-export default function Header() {
+const Header: React.FC = () => {
+  const [search, setSearch] = useState<string>("");
+  //need to move this state to main component for search
+  const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value)
+  };
+
   return (
     <header>
-      <div className="header-content container">
-        <input type="text" placeholder="Search item..." id="search" autoComplete={'off'}/>
+      <div className="container header-content">
+        <input
+          type="text"
+          placeholder="Search item..."
+          id="search"
+          value={search}
+          onChange={searchChangeHandler}
+        />
 
         <div>
           <a href="/" className="logo"> Todo App! </a>
@@ -15,4 +27,5 @@ export default function Header() {
       </div>
     </header>
   )
-}
+};
+export default Header;

@@ -16,8 +16,6 @@ p, h1, h2, h3, h4, ul, body, button {
 }
 
 * {
-  //padding: 0;
-  //margin: 0;
   font-family: 'Lato', sans-serif;
   box-sizing: border-box;
 }
@@ -27,3 +25,16 @@ a, a:hover {
   text-decoration: none;
 }
 
+// --- = classes for all components
+.container {
+  width: 75%;
+  margin: 0 auto;
+  padding: 0;
+  min-width: 220px; //--- for todos and form
+}
+
+@media all and (max-width: 800px) {
+  .container {
+    width: 85%;
+  }
+}

@@ -1,19 +1,20 @@
 header {
-  background-color: #cc6666;
+  background-color: #cc8aaf; // #cc6666;
 }
 .header-content {
   display: flex;
   justify-content: space-between;
   font-size: 24px;
   align-items: center; /*centering vertical items - works with flex-box*/
-  height: 60px;
+  min-height: 80px;
+}
+@media all and (max-width: 700px) {
+  .header-content {
+    flex-direction: column-reverse;
+    padding: 10px 0; //!important
+  }
 }
 
-.container {
-  width: 75%;
-  margin: 0 auto;
-  padding: 0;
-}
 .logo {
   font-family: "Cooper Black", sans-serif;
   font-style: italic;

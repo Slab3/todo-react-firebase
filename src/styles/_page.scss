@@ -1,0 +1,46 @@
+// TodoList.tsx styles
+
+//.todos {}
+.todo {
+  margin: 10px 0;
+}
+.todo span { // item with title
+  width: 100%;
+  padding: 0 8px;
+}
+.todo.completed span {
+  text-decoration: line-through;
+  color: #3c0c0d;
+  font-weight: 700;
+}
+
+.todo label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 1rem;
+  background: #f5f5f5;
+}
+
+// the delete button is visible only if the mouse is on the li item
+//.todo:hover {
+//  .deleteIcon {
+//    opacity: 1;
+//  }
+//}
+
+.todo .deleteIcon { // delete Btn
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  //z-index: 2;
+  //opacity: 0;
+  transition: .2s;
+  background-color: #d1766f;
+  padding: 0 5px;
+  &:hover {
+    background-color: #b96460;
+  }
+}

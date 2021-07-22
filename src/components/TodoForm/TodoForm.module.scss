@@ -1,0 +1,32 @@
+.inputField {
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 10px auto;
+  max-width: 800px;
+}
+
+.title {
+  border: none;
+  font-size: 16px;
+  border-bottom: 2px solid #aebcd6;
+  outline: none;
+  width: 100%;
+
+  &::placeholder {color: #cccccc}
+  &:focus {
+    border-bottom-color: #656587;
+  }
+}
+.active {
+  font-size: 22px;
+  line-height: 22px;
+}
+.title, .active {
+  color: #9e9e9e;
+  transition: .3s ease;
+  &:focus, &:focus +.active {
+    color: #656587;
+    font-size: 16px;
+  }
+}
+
