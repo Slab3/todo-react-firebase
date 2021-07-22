@@ -12,7 +12,6 @@ export function randomUniqueString(prefix: any) {
   ].join(''))
 }
 
-
 export default {
   randomUniqueString
 }
