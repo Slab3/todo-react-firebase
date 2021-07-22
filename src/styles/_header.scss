@@ -1,0 +1,35 @@
+header {
+  background-color: #cc6666;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  align-items: center; /*centering vertical items - works with flex-box*/
+  height: 60px;
+}
+
+.container {
+  width: 75%;
+  margin: 0 auto;
+  padding: 0;
+}
+.logo {
+  font-family: "Cooper Black", sans-serif;
+  font-style: italic;
+  font-size: 28px;
+  letter-spacing: -1px;
+  color: #1e1e1e;
+  &:hover {
+    color: #5a0000;
+  }
+}
+
+#search {
+  font-size: 20px;
+  border-radius: 8px;
+  padding: 2px 4px;
+  outline-color: #cc6666;
+  border: none;
+}
+
