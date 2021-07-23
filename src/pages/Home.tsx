@@ -4,6 +4,7 @@ import TodoForm from '../components/TodoForm/TodoForm';
 import '../styles/main.scss'
 import {TodoList} from "../components/TodoList/TodoList";
 import {ITodo} from "../interfaces";
+import {randomUniqueString} from '../util';
 
 function Home() {
   const [todos, setTodos] = useState<ITodo[]>([]);
@@ -11,7 +12,7 @@ function Home() {
   const addHandler = (title: string) => {
     const newTodo: ITodo = {
       title: title,
-      id: Date.now(), // ---------- add random id generator
+      id: randomUniqueString('id-'),
       completed: false
     };
     // setTodos([newTodo, ...todos])
@@ -19,7 +20,7 @@ function Home() {
     // колбек для того, чтобы не было случаев когда данные ещё не обновились, а уже поступают новые
   };
 
-  const toggleHandler = (id: number) => {
+  const toggleHandler = (id: string) => {
     setTodos(prev =>
       prev.map(todo => {
         if (todo.id === id) {
@@ -33,8 +34,11 @@ function Home() {
     )
   };
 
-  const removeHandler = (id: number) => {
-    setTodos(prev => prev.filter(todo => todo.id !== id))
+  const removeHandler = (id: string) => {
+    const confirmDeletion = window.confirm('Are you sure, you want to delete element?');
+    if (confirmDeletion) {
+      setTodos(prev => prev.filter(todo => todo.id !== id))
+    }
   };
 
   return (
