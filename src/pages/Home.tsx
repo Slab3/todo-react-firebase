@@ -8,7 +8,14 @@ import {randomUniqueString} from '../util';
 
 function Home() {
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const [search, setSearch] = useState<string>("");
 
+  // searchHandler
+  const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value)
+  };
+
+  // createNewTodo
   const addHandler = (title: string) => {
     const newTodo: ITodo = {
       title: title,
@@ -43,12 +50,16 @@ function Home() {
 
   return (
     <div>
-      <Header />
+      <Header
+        search={search}
+        onChangeSearch={searchChangeHandler}
+      />
       <TodoForm onAdd={addHandler}/>
       <TodoList
         todos={todos}
         onToggle={toggleHandler}
         onRemove={removeHandler}
+        search={search}
       />
     </div>
   );

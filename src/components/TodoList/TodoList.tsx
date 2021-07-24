@@ -5,18 +5,25 @@ interface ITodoListProps {
   todos: ITodo[]
   onToggle(id: string): void //принимаем id num, и возвращаем void
   onRemove(id: string): void
+  search: string
 }
 // в эти функции надо передавать нужный айди. Когда кликаем на удаление, то здесь можно обработать
 // событие onclick, тут я передаю колбек где вызовываю функцию onRemove/onToggle с значением todo.id
 
-export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove }) => {
+export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove, search }) => {
+
   if (todos.length === 0) {
     return (
       <li style={{textAlign: "center"}}>There are no tasks yet!</li>
     )
   }
 
-  //test removeHandler
+  // filtering items by search value before rendering
+  const filterTodos = todos.filter((todo) => {
+    return todo.title.toUpperCase().indexOf(search.toUpperCase()) >= 0;
+  });
+
+  // removeHandler
   const removeHandler = (event: React.MouseEvent, id: string) => {
     event.preventDefault(); //without this if press "delete"+"cancel" todoItem marks as "completed"
     onRemove(id)
@@ -24,7 +31,7 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove }
 
   return (
     <ul className={"container todos"}>
-      {todos.map(todo => {
+      {filterTodos.map(todo => { // map thru "todos" filtered by search input value
         const classes = ['todo']; // classes for every todo
         if (todo.completed) {
           classes.push('completed')
@@ -37,7 +44,7 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove }
                 checked={todo.completed}
                 onChange={()=> onToggle(todo.id)}
               />
-              <span>{todo.title}</span>
+              <span className={"todoTitle"}>{todo.title}</span>
               <b className="deleteIcon" onClick={event => removeHandler(event, todo.id)}>×</b>
             </label>
           </li>

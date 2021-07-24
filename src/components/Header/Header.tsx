@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const Header: React.FC = () => {
-  const [search, setSearch] = useState<string>("");
-  //need to move this state to main component for search
-  const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
-  };
+interface IHeaderProps {
+  search: string
+  onChangeSearch(event: React.ChangeEvent<HTMLInputElement>) :void
+}
+
+export const Header: React.FC<IHeaderProps> = (props) => {
 
   return (
     <header>
@@ -14,8 +14,8 @@ const Header: React.FC = () => {
           type="text"
           placeholder="Search item..."
           id="search"
-          value={search}
-          onChange={searchChangeHandler}
+          value={props.search}
+          onChange={props.onChangeSearch}
         />
 
         <div>

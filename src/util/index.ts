@@ -2,7 +2,7 @@ export function genId() {
   return Math.random().toString(16).slice(-4)
 }
 
-export function randomUniqueString(prefix: any) {
+export function randomUniqueString(prefix: string) {
   return (prefix || '').concat([
     genId(),
     genId(),
@@ -12,6 +12,4 @@ export function randomUniqueString(prefix: any) {
   ].join(''))
 }
 
-export default {
-  randomUniqueString
-}
+export default randomUniqueString;
