@@ -3,25 +3,70 @@
 //.todos {}
 .todo {
   margin: 10px 0;
-}
-.todo span { // item with title
-  width: 100%;
-  padding: 0 8px;
-}
-.todo.completed span {
-  text-decoration: line-through;
-  color: #3c0c0d;
-  font-weight: 700;
+
+  span { // item with title
+    width: calc(100% - 65px); //65px - width for buttons
+    padding: 0 5px;
+    word-wrap: break-word;
+  }
+
+  &.completed span {
+    text-decoration: line-through;
+    color: #3c0c0d;
+    font-weight: 700;
+  }
+
+  label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 1rem;
+    background: #f5f5f5;
+  }
+
+  .deleteIcon { // delete Btn
+    background-color: #d1766f;
+    padding: 0 5px;
+    &:hover {
+      background-color: #b96460;
+    }
+  }
+
+  .editIcon {
+    background-color: lightblue;
+    padding: 0 8px;
+    background-image: url(../img/editStatic.svg);
+    background-size: cover;
+    margin-right: 3px;
+    &:hover {
+      background-image: url(../img/editAnimated.gif);
+    }
+  }
 }
 
-.todo label {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+// buttons
+.btn {
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  transition: .2s;
   cursor: pointer;
-  padding: 1rem;
-  background: #f5f5f5;
+  //z-index: 2;
+  //opacity: 0;
+}
+
+// ----- TodoForm.tsx, addIcon
+.addIcon {
+  position: absolute;
+  right: 0;
+  width: 20px;
+  margin-bottom: 3px;
+  background-color: rgba(138, 230, 141, 0.5);
+  &:hover {
+    background-color: rgba(122, 204, 126, 0.7);
+  }
 }
 
 // the delete button is visible only if the mouse is on the li item
@@ -31,16 +76,8 @@
 //  }
 //}
 
-.todo .deleteIcon { // delete Btn
-  border-radius: 5px;
-  color: white;
-  text-align: center;
-  //z-index: 2;
-  //opacity: 0;
-  transition: .2s;
-  background-color: #d1766f;
-  padding: 0 5px;
-  &:hover {
-    background-color: #b96460;
-  }
-}
+
+
+
+
+

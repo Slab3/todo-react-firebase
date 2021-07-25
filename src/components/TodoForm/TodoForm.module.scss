@@ -3,6 +3,7 @@
   flex-direction: column-reverse;
   margin: 10px auto;
   max-width: 800px;
+  position: relative;
 }
 
 .title {
@@ -30,3 +31,4 @@
   }
 }
 
+// add icon styles in _page.scss

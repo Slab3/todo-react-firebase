@@ -12,14 +12,15 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
     setTitle(event.target.value);
   };
 
-  const keyPressHandler = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      if (title !== '') {
-        props.onAdd(title);
-        setTitle("");
-      } else alert("Input field cannot be empty!"); // add popover
-    }
-  };
+
+  function addTodo() {
+    if (title !== "") {
+      props.onAdd(title);
+      setTitle("");
+    } else alert("Input field cannot be empty!"); // add popover
+  }
+  const keyPressHandler = (event: React.KeyboardEvent) => { if (event.key === "Enter") { addTodo() } };
+  const clickAddHandler = (event: React.MouseEvent) => { addTodo() };
 
   return (
     <div className="container">
@@ -32,13 +33,14 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
           value={title}
           onChange={changeHandler}
           onKeyPress={keyPressHandler}
+          maxLength={1000}
           // autoComplete={"off"}
         />
         <label htmlFor="title" className={styles.active}>
           Enter title
         </label>
+        <b className="addIcon btn" onClick={clickAddHandler}>+</b>
       </div>
-
     </div>
   )
 };

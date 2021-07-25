@@ -1,5 +1,5 @@
 import React from 'react';
-import {ITodo} from "../../interfaces";
+import {ITodo} from '../../interfaces';
 
 interface ITodoListProps {
   todos: ITodo[]
@@ -45,7 +45,8 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove, 
                 onChange={()=> onToggle(todo.id)}
               />
               <span className={"todoTitle"}>{todo.title}</span>
-              <b className="deleteIcon" onClick={event => removeHandler(event, todo.id)}>×</b>
+              <b className="editIcon btn" onClick={()=> console.log("edit button")}> </b>
+              <b className="deleteIcon btn" onClick={event => removeHandler(event, todo.id)}>×</b>
             </label>
           </li>
         );
