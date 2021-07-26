@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from '../components/Header/Header';
 import TodoForm from '../components/TodoForm/TodoForm';
 import '../styles/main.scss'
@@ -8,12 +8,18 @@ import {randomUniqueString} from '../util';
 
 function Home() {
   const [todos, setTodos] = useState<ITodo[]>([]);
-  const [search, setSearch] = useState<string>("");
 
-  // searchHandler
-  const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
-  };
+  // getting data from localstorage and set data.
+  useEffect(()=> {
+    const saved = JSON.parse(localStorage.getItem("todos") || "[]") as ITodo[];
+    setTodos(saved);
+  }, []);
+
+  useEffect(()=> {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  },[todos]);
+  // getting data from localstorage
+
 
   // createNewTodo
   const addHandler = (title: string) => {
@@ -50,16 +56,12 @@ function Home() {
 
   return (
     <div>
-      <Header
-        search={search}
-        onChangeSearch={searchChangeHandler}
-      />
+      <Header />
       <TodoForm onAdd={addHandler}/>
       <TodoList
         todos={todos}
         onToggle={toggleHandler}
         onRemove={removeHandler}
-        search={search}
       />
     </div>
   );

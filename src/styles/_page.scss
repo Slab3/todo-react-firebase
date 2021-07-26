@@ -1,8 +1,13 @@
 // TodoList.tsx styles
 
-//.todos {}
+.todos {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .todo {
   margin: 10px 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
 
   span { // item with title
     width: calc(100% - 65px); //65px - width for buttons
@@ -28,9 +33,12 @@
 
   .deleteIcon { // delete Btn
     background-color: #d1766f;
-    padding: 0 5px;
+    padding: 0 8px;
+    background-image: url(../img/deleteStatic.svg);
+    background-size: 100%; //cover
     &:hover {
       background-color: #b96460;
+      background-image: url(../img/deleteAnimated.gif);
     }
   }
 
@@ -38,7 +46,7 @@
     background-color: lightblue;
     padding: 0 8px;
     background-image: url(../img/editStatic.svg);
-    background-size: cover;
+    background-size: 100%;
     margin-right: 3px;
     &:hover {
       background-image: url(../img/editAnimated.gif);

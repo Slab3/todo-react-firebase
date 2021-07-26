@@ -14,10 +14,14 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
 
 
   function addTodo() {
-    if (title !== "") {
+    if (title === "") {
+      alert("Input field cannot be empty!") // add popover
+    } else if (title[0] === " ") {
+      alert("The title cannot start with a space!")
+    } else {
       props.onAdd(title);
       setTitle("");
-    } else alert("Input field cannot be empty!"); // add popover
+    }
   }
   const keyPressHandler = (event: React.KeyboardEvent) => { if (event.key === "Enter") { addTodo() } };
   const clickAddHandler = (event: React.MouseEvent) => { addTodo() };

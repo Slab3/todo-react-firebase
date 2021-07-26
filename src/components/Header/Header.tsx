@@ -1,22 +1,10 @@
 import React from 'react';
 
-interface IHeaderProps {
-  search: string
-  onChangeSearch(event: React.ChangeEvent<HTMLInputElement>) :void
-}
-
-export const Header: React.FC<IHeaderProps> = (props) => {
+export const Header: React.FC = () => {
 
   return (
     <header>
       <div className="container header-content">
-        <input
-          type="text"
-          placeholder="Search item..."
-          id="search"
-          value={props.search}
-          onChange={props.onChangeSearch}
-        />
 
         <div>
           <a href="/" className="logo"> Todo App! </a>

@@ -1,0 +1,37 @@
+// filtration items
+.filtration {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.searchBlock, .selectSortBlock {
+  border-bottom: 3px solid #e2eff6;
+  padding: 5px 0 0 0;
+}
+.searchBlock {
+  margin-right: 5px;
+}
+.selectSortBlock {
+  .labelSort {
+    //font-size: 19px;
+  }
+}
+
+.search, .selectSortTodo {
+  //height: 100%;
+  font-size: 19px;
+  border: none;
+  outline: none;
+  transition: 0.2s ease-in-out;
+  border-radius: 15px 15px 0 0;
+  &:focus {
+    box-shadow: 0 0 3pt 2pt #a7c9ed;
+  }
+}
+.selectSortTodo {
+  background-color: #e2eff6;
+}
+
+
