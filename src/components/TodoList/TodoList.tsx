@@ -12,11 +12,7 @@ interface ITodoListProps {
 
 export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove}) => {
   const [search, setSearch] = useState<string>("");
-
-  // searchHandler
-  const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
-  };
+  const [filterBy, setFilterBy] = useState<string>("");
 
   if (todos.length === 0) {
     return (
@@ -24,16 +20,40 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove})
     )
   }
 
-  // filtering items by search value before rendering
-  const filterTodos = todos.filter((todo) => {
-    return todo.title.toUpperCase().indexOf(search.toUpperCase()) >= 0;
-  });
-
   // removeHandler
   const removeHandler = (event: React.MouseEvent, id: string) => {
     event.preventDefault(); //without this if press "delete"+"cancel" todoItem marks as "completed"
     onRemove(id)
   };
+  // searchHandler
+  const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value)
+  };
+
+  // filter by select value
+  const filterByHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedFilter = event.target.value;
+    setFilterBy(selectedFilter);
+  };
+  if (filterBy === "all") {
+    todos = todos.filter((todo) => {
+      return todo;
+    });
+  } else if (filterBy === "completed")  {
+    todos = todos.filter((todo) => {
+      return todo.completed;
+    });
+  } else if (filterBy === "incompleted") {
+    todos = todos.filter((todo) => {
+      return !todo.completed;
+    });
+  }
+
+  // filtering items by search value before rendering
+  let filterTodos = todos.filter((todo) => {
+    return todo.title.toUpperCase().indexOf(search.toUpperCase()) >= 0;
+  });
+
 
   return (
     <div > {/*className="container"*/}
@@ -51,10 +71,16 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove})
         </div>
         <div className={styles.selectSortBlock}>
           <label className={styles.labelSort} htmlFor="selectSortTodo">Sort by: </label>
-          <select id="selectSortTodo" className={styles.selectSortTodo} name="cars">
-            <option value="All">All</option>
-            <option value="Only completed">Completed</option> {/*Only Completed*/}
-            <option value="Only incompleted">Incomplete</option>
+          <select
+            id="selectSortTodo"
+            className={styles.selectSortTodo}
+            name="filterBy"
+            onChange={filterByHandler}
+            value = {filterBy}
+          >
+            <option value="all">All</option>
+            <option value="completed">Completed</option> {/*Only Completed*/}
+            <option value="incompleted">Incomplete</option>
           </select>
         </div>
       </div>
