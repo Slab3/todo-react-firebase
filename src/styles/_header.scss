@@ -19,11 +19,20 @@ header {
   font-family: "Cooper Black", sans-serif;
   font-style: italic;
   font-size: 28px;
+}
+
+.logo, .navBar {
   letter-spacing: -1px;
   color: #1e1e1e;
   &:hover {
     color: #5a0000;
+    //font-weight: 700;
   }
 }
 
-
+.navBar {
+  padding: 0 12px;
+  &:not(:last-child) {
+    border-right: 2px solid black;
+  }
+}

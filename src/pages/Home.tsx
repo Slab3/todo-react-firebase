@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Header from '../components/Header/Header';
 import TodoForm from '../components/TodoForm/TodoForm';
 import '../styles/main.scss'
 import {TodoList} from "../components/TodoList/TodoList";
@@ -56,7 +55,6 @@ function Home() {
 
   return (
     <div>
-      <Header />
       <TodoForm onAdd={addHandler}/>
       <TodoList
         todos={todos}

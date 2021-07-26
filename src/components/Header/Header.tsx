@@ -1,17 +1,19 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 export const Header: React.FC = () => {
 
   return (
     <header>
       <div className="container header-content">
-
         <div>
-          <a href="/" className="logo"> Todo App! </a>
+          <NavLink to="/" className="logo"> Todo App! </NavLink>
         </div>
 
-        <div>Log In / Log out</div>
-      {/** Logo - on center, Search - left, Log in/Log out - right top*/}
+        <div>
+          <NavLink to="/SignUp" className={"navBar signUp"}>Register</NavLink>
+          <NavLink to="/SignIn" className={"navBar signIn"}>Sign In</NavLink>
+        </div>
       </div>
     </header>
   )

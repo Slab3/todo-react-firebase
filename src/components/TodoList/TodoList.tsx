@@ -36,7 +36,7 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove})
   };
 
   return (
-    <div className="container">
+    <div > {/*className="container"*/}
       <div className={styles.filtration}>
         <div className={styles.searchBlock}>
           <input

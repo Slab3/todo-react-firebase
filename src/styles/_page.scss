@@ -8,6 +8,7 @@
 .todo {
   margin: 10px 0;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  font-size: 18px;
 
   span { // item with title
     width: calc(100% - 65px); //65px - width for buttons
@@ -33,9 +34,9 @@
 
   .deleteIcon { // delete Btn
     background-color: #d1766f;
-    padding: 0 8px;
+    padding: 0 9px;
     background-image: url(../img/deleteStatic.svg);
-    background-size: 100%; //cover
+    background-size: cover; //cover
     &:hover {
       background-color: #b96460;
       background-image: url(../img/deleteAnimated.gif);
@@ -44,9 +45,9 @@
 
   .editIcon {
     background-color: lightblue;
-    padding: 0 8px;
+    padding: 0 9px;
     background-image: url(../img/editStatic.svg);
-    background-size: 100%;
+    background-size: cover;
     margin-right: 3px;
     &:hover {
       background-image: url(../img/editAnimated.gif);

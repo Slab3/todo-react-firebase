@@ -27,7 +27,7 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
   const clickAddHandler = (event: React.MouseEvent) => { addTodo() };
 
   return (
-    <div className="container">
+    <div > {/*className="container"*/}
       <div className={styles.inputField}>
         <input
           type="text"
