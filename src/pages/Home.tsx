@@ -4,9 +4,32 @@ import '../styles/main.scss'
 import {TodoList} from "../components/TodoList/TodoList";
 import {ITodo} from "../interfaces";
 import {randomUniqueString} from '../util';
+import Filter from "../components/Filter/Filter";
 
 function Home() {
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [filterBy, setFilterBy] = useState<string>("");
+
+  // filter handlers
+  const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value)
+  };
+  const filterSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedFilter = event.target.value;
+    setFilterBy(selectedFilter);
+  };
+
+  let filterTodos = todos.filter((todo) => {
+    return todo.title.toUpperCase().indexOf(search.toUpperCase()) >= 0;
+  });
+  if (filterBy === "all") {
+    filterTodos = filterTodos.filter((todo) => todo);
+  } else if (filterBy === "completed")  {
+    filterTodos = filterTodos.filter((todo) => todo.completed);
+  } else if (filterBy === "incompleted") {
+    filterTodos = filterTodos.filter((todo) => !todo.completed);
+  }
 
   // getting data from localstorage and set data.
   useEffect(()=> {
@@ -17,8 +40,6 @@ function Home() {
   useEffect(()=> {
     localStorage.setItem("todos", JSON.stringify(todos));
   },[todos]);
-  // getting data from localstorage
-
 
   // createNewTodo
   const addHandler = (title: string) => {
@@ -56,8 +77,14 @@ function Home() {
   return (
     <div>
       <TodoForm onAdd={addHandler}/>
+      <Filter
+        search={search}
+        onSearchChange={searchChangeHandler}
+        filterBy={filterBy}
+        onSelectChange={filterSelectHandler}
+      />
       <TodoList
-        todos={todos}
+        todos={filterTodos}
         onToggle={toggleHandler}
         onRemove={removeHandler}
       />
