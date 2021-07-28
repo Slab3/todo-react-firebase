@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import styles from './TodoList.module.scss'
 import {ITodo} from '../../interfaces';
+import Modal from "../Modal/Modal";
 
 interface ITodoListProps {
   todos: ITodo[]          // this component receives "filterTodos"
@@ -11,6 +12,8 @@ interface ITodoListProps {
 // событие onclick, тут я передаю колбек где вызовываю функцию onRemove/onToggle с значением todo.id
 
 export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove}) => {
+  const [modalActive, setModalActive] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string>('Error');
 
   if (todos.length === 0) {
     return (
@@ -21,21 +24,22 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove})
   // remove todo handler
   const removeHandler = (event: React.MouseEvent, id: string) => {
     event.preventDefault(); //without this if press "delete"+"cancel" todoItem marks as "completed"
-    onRemove(id)
+    onRemove(id);
+    // setModalType('delete');
+    // setModalActive(true)
   };
 
   return (
-    <div > {/*className="container"*/}
-
-      {/* notes \/ */}
+    <div >
+      <Modal active={modalActive} setActive={setModalActive} type={modalType}/>
       <ul className={"todos"}>
         {todos.map(todo => { // map thru "todos" filtered by search input value
-          const classes = ['todo']; // classes for every todo
+          const classes = ["todo"]; // classes for every todo
           if (todo.completed) {
-            classes.push('completed')
+            classes.push("completed")
           }
           return (
-            <li className={classes.join(' ')} key={todo.id}>
+            <li className={classes.join(" ")} key={todo.id}>
               <label>
                 <input
                   type="checkbox"
