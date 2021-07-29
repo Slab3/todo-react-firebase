@@ -5,11 +5,18 @@ import {TodoList} from "../components/TodoList/TodoList";
 import {ITodo} from "../interfaces";
 import {randomUniqueString} from '../util';
 import Filter from "../components/Filter/Filter";
+import Modal from "../components/Modal/Modal";
 
 function Home() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [search, setSearch] = useState<string>("");
   const [filterBy, setFilterBy] = useState<string>("");
+
+  // modal test
+  const [modalActive, setModalActive] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string>('Error');
+  // const [modalStatus, setModalStatus] = useState<boolean>(false);
+
 
   // filter handlers
   const searchChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,10 +75,26 @@ function Home() {
   };
 
   const removeHandler = (id: string) => {
+    // setModalType('delete');
+    // setModalActive(true);
     const confirmDeletion = window.confirm('Are you sure, you want to delete element?');
     if (confirmDeletion) {
       setTodos(prev => prev.filter(todo => todo.id !== id))
     }
+  };
+
+  const editHandler = (id: string, newTitle: string) => {
+    setTodos(prev =>
+      prev.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            title: newTitle
+          }
+        }
+        return todo
+      })
+    )
   };
 
   return (
@@ -83,10 +106,12 @@ function Home() {
         filterBy={filterBy}
         onSelectChange={filterSelectHandler}
       />
+      <Modal active={modalActive} setActive={setModalActive} type={modalType}/> {/* not active */}
       <TodoList
         todos={filterTodos}
         onToggle={toggleHandler}
         onRemove={removeHandler}
+        onEdit={editHandler}
       />
     </div>
   );

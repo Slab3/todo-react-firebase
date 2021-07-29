@@ -4,13 +4,13 @@ import '../../styles/_modal.scss'
 import styles from "../TodoForm/TodoForm.module.scss"; // styles for edit input
 
 interface IModal {
-  active: boolean;
-  setActive: Dispatch<SetStateAction<boolean>>;
-  type: string;
+  active: boolean
+  setActive: Dispatch<SetStateAction<boolean>>
+  type: string
 }
 
 export const Modal: React.FC<IModal> = ({active, setActive, type}) => {
-
+  {/* this component unused */}
   return (
     <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
       <div className={active ? "modal-content active" : "modal-content"} onClick={e => e.stopPropagation()}>
@@ -21,7 +21,7 @@ export const Modal: React.FC<IModal> = ({active, setActive, type}) => {
             <p className={"text-confirm"}>Are you sure you want to delete this item?</p>
             <div className="buttons-modal-block">
               <span className="cancel btn modalBtn" onClick={()=>setActive(false)}>Cancel</span>
-              <span className="delete btn modalBtn">Delete</span>
+              <span className="delete btn modalBtn" onClick={()=>setActive(false)}>Delete</span>
             </div>
           </div>
         }
