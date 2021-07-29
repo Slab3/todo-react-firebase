@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {ITodo} from "../../interfaces";
 import styles from "./Todo.module.scss";
+import TextareaAutosize from 'react-textarea-autosize';
 
 
 interface ITodoComp extends ITodo {
@@ -25,19 +26,20 @@ export const Todo: React.FC<ITodoComp> = ({ title, id, completed, onToggle, onRe
     onRemove(id);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => { /*<HTMLInputElement>*/
     setNewTitle(event.target.value)
   };
+
   // SAVE todo handler's
   function saveTodo() {
     // event.preventDefault();
     onEdit(id, newTitle);
-    // setNewTitle("");
     setEditing(false);
   }
 
-  const keyPressSave = (event: React.KeyboardEvent) => { if (event.key === "Enter") {saveTodo()} };
+  // const keyPressSave = (event: React.KeyboardEvent) => { if (event.key === "Enter") {saveTodo()} };
   const handleSave = (event: React.MouseEvent) => { saveTodo() };
+
 
 
   const viewTemplate = (
@@ -48,48 +50,45 @@ export const Todo: React.FC<ITodoComp> = ({ title, id, completed, onToggle, onRe
           checked={completed}
           onChange={()=> onToggle(id)}
         />
-        <span className={"todoTitle"}>{title}</span>
+        <span className={"todoTitle"}><pre>{title}</pre></span> {/* tag pre for save all spaces */}
         <b className="editIcon btn" onClick={()=>setEditing(true)}> </b> {/*symbol - alt255*/}
         <b className="deleteIcon btn" onClick={(event) => removeHandler(event, id)}> </b>
       </label>
     </li>
   );
 
+  let trimmedTitle = title.length > 40 ? title.substring(0, 40) + "..." : title;
   const editingTemplate = (
-    <div >
-      <div className={styles.inputField}>
-        <input
-          type="text"
-          id={id}
-          placeholder={"Enter new title"}
-          className={styles.title}
-          value={newTitle}
-          onChange={handleChange}
-          onKeyPress={keyPressSave}
-          maxLength={1000}
-          // autoComplete={"off"}
-        />
-        <label htmlFor={id} className={styles.active}>
-          Enter new title for: "{title}"
-        </label>
-        <div className={styles.buttonsEditBlock}>
-          <span
-            className={`${styles.cancel} ${styles.editBtn}`}
-            onClick={()=> {setNewTitle(title); setEditing(false)}}
-          >
-            Cancel
-          </span>
-          <span
-            className={`${styles.save} ${styles.editBtn}`}
-            onClick={handleSave}
-          >
-            Save
-          </span>
-        </div>
+    <div className={styles.inputField}>
+      <TextareaAutosize
+        id={id}
+        placeholder={"Enter new title"}
+        className={styles.title}
+        value={newTitle}
+        onChange={handleChange}
+        // onKeyPress={keyPressSave}
+        maxLength={1000}
+        maxRows={35}
+      /> {/* input */}
+      <label htmlFor={id} className={styles.active}>
+        Enter new title for: <i className={styles.trimmedTitle}>"{trimmedTitle}"</i>
+      </label>
+      <div className={styles.buttonsEditBlock}>
+        <span
+          className={`${styles.cancel} ${styles.editBtn}`}
+          onClick={()=> {setNewTitle(title); setEditing(false)}}
+        >
+          Cancel
+        </span>
+        <span
+          className={`${styles.save} ${styles.editBtn}`}
+          onClick={handleSave}
+        >
+          Save
+        </span>
       </div>
     </div>
   );
-
 
   return (
     <div>{isEditing ? editingTemplate : viewTemplate}</div>

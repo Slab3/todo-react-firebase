@@ -18,8 +18,8 @@
 
   &.completed span {
     text-decoration: line-through;
-    color: #3c0c0d;
-    font-weight: 700;
+    color: #76757f;
+    //font-weight: 700;
   }
 
   label {
@@ -62,8 +62,8 @@
   text-align: center;
   transition: .2s;
   cursor: pointer;
-  //z-index: 2;
-  //opacity: 0;
+  z-index: 2;
+  opacity: 0;
 }
 
 // ----- TodoForm.tsx, addIcon
@@ -79,11 +79,14 @@
 }
 
 // the delete button is visible only if the mouse is on the li item
-//.todo:hover {
-//  .deleteIcon {
-//    opacity: 1;
-//  }
-//}
+.todo:hover {
+  .deleteIcon {
+    opacity: 1;
+  }
+  .editIcon {
+    opacity: 1;
+  }
+}
 
 
 
