@@ -1,0 +1,19 @@
+div {
+  margin: 0 auto;
+}
+.buttonForm {
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 18px;
+  border-radius: 8px;
+  display: inline-block;
+  border: 2px solid #aebcd6;
+  color: black;
+  background-color: #cc8aaf;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: #bf80a4;
+    color: #5a0000;;
+  }
+}

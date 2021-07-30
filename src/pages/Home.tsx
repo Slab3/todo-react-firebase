@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import TodoForm from '../components/TodoForm/TodoForm';
 import '../styles/main.scss'
-import {TodoList} from "../components/TodoList/TodoList";
 import {ITodo} from "../interfaces";
 import {randomUniqueString} from '../util';
+import TodoForm from '../components/TodoForm/TodoForm';
+import TodoList from "../components/TodoList/TodoList";
 import Filter from "../components/Filter/Filter";
 import Modal from "../components/Modal/Modal";
 

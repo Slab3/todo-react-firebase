@@ -1,0 +1,22 @@
+.block-sign-component {
+  margin: 10vh auto 0;
+  max-width: 500px;
+  background-color: #eeeeee;
+  height: 60vh;
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h2 {
+    text-align: right;
+  }
+}
+
+.nav-link {
+  color: #cc8aaf; // #c8a431;
+  font-weight: 600;
+  &:hover {
+    color: #b17395; // #b48f2f;
+  }
+}

@@ -1,26 +1,49 @@
-import React from 'react';
-import { useHistory } from "react-router";
+import React, {useState} from 'react';
+import '../styles/main.scss';
+import {NavLink} from "react-router-dom";
+import Input from "../components/Common/Input/Input";
+import ButtonForm from "../components/Common/ButtonForm/ButtonForm";
 
 export const SignIn: React.FC = () => {
-  const history = useHistory();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>)=> { setEmail(event.target.value) };
+  const handlePassword = (event: React.ChangeEvent<HTMLInputElement>)=> { setPassword(event.target.value) };
+
   return (
-    <>
-      <h1>Sign In</h1>
-      <h4>Text Lorem</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid assumenda culpa id iusto
-        labore modi non officiis, pariatur, placeat quaerat quis quisquam rem saepe sed, suscipit temporibus totam
-        ullam unde velit. Consectetur debitis fugit harum ipsam labore odit officia reiciendis repellat. Animi
-        aspernatur deserunt earum ipsa natus neque odit quos. Autem debitis delectus deserunt mollitia totam.
-        Accusamus aliquid consequatur dolor, doloremque doloribus, error et expedita explicabo ipsa libero, minus
-        molestiae mollitia nihil officiis quaerat quam quas ratione voluptas voluptatibus.
-      </p>
-      <div className="redirectSignIUp">
-        <span>Don't have an account yet? Register now</span> {/* add "Register now" as <NavLink>*/}
-        <button onClick={()=> history.push('/SignUp')}>
-          Register (Sign Up)
-        </button>
+    <div className={"block-sign-component"}>
+      <h2>Sign In</h2>
+
+      <form action="">
+        <Input
+          type={"text"}
+          id={"email"}
+          maxWidth={350}
+          placeholder={"email"}
+          value={email}
+          setValue={handleEmail}
+        />
+        <Input
+          type={"password"}
+          id={"password"}
+          maxWidth={350}
+          placeholder={"password"}
+          value={password}
+          setValue={handlePassword}
+        />
+        <ButtonForm
+          text={"Sign In"}
+          maxWidth={350}
+        />
+      </form>
+
+      <div>
+        <span>Don't have an account?</span>
+        <NavLink to="/SignUp" className={"nav-link"}> Sign Up </NavLink>
       </div>
-    </>
+
+    </div>
   )
 };
 

@@ -41,7 +41,6 @@ export const Todo: React.FC<ITodoComp> = ({ title, id, completed, onToggle, onRe
   const handleSave = (event: React.MouseEvent) => { saveTodo() };
 
 
-
   const viewTemplate = (
     <li className={classes.join(" ")} key={id}>
       <label>

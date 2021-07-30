@@ -8,9 +8,9 @@ interface IModal {
   setActive: Dispatch<SetStateAction<boolean>>
   type: string
 }
-
+/* this component unused */
 export const Modal: React.FC<IModal> = ({active, setActive, type}) => {
-  {/* this component unused */}
+
   return (
     <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
       <div className={active ? "modal-content active" : "modal-content"} onClick={e => e.stopPropagation()}>

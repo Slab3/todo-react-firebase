@@ -41,3 +41,5 @@ export const TodoList: React.FC<ITodoListProps> = ({ todos, onToggle, onRemove, 
     </div>
   )
 };
+
+export default TodoList;
