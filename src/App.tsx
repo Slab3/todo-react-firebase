@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Header from './components/Header/Header';
 import './styles/main.scss'
 import Home from "./pages/Home";
@@ -15,6 +15,7 @@ export const App: React.FC = () => {
           <Route component={Home} path={"/"} exact />
           <Route component={SignUp} path={"/SignUp"} exact />
           <Route component={SignIn} path={"/SignIn"} exact />
+          <Redirect to={"/"} />
         </Switch>
       </div>
 
